@@ -12,11 +12,84 @@
     <Window.DataContext>
         <viewmodel:MainWindowViewModel/>
     </Window.DataContext>
-    
-    <Grid>
-        <TextBox Margin="50,50,50,50"
+    <DockPanel LastChildFill="True">
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Создать новый проект"></MenuItem>
+                <MenuItem Header="Сохранить"></MenuItem>
+                <MenuItem Header="Сохранить как..."></MenuItem>
+                <MenuItem Header="Импорт"></MenuItem>
+                <MenuItem Header="Экспорт"></MenuItem>
+                <MenuItem Header="Выход"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Правка">
+                <MenuItem Header="Копировать"></MenuItem>
+                <MenuItem Header="Вырезать"></MenuItem>
+                <MenuItem Header="Вставить"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Вид"></MenuItem>
+            <MenuItem Header="Проект"></MenuItem>
+            <MenuItem Header="Помощь">
+                <MenuItem Header="О программе..."></MenuItem>
+            </MenuItem>
+        </Menu>
+        
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <TextBlock Text="Status"></TextBlock>
+            </StatusBarItem>
+            <StatusBarItem MaxHeight="300" MinHeight="14">
+                <ProgressBar Width="150" Height="16" Value="54"></ProgressBar>
+            </StatusBarItem>
+        </StatusBar>
+        
+        <TabControl>
+            <TabItem Header="УМ" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25*" MinHeight="5" MaxHeight="150"></RowDefinition>
+                        <RowDefinition Height="25*" MinHeight="5" MaxHeight="150"></RowDefinition>
+                        <RowDefinition Height="25*" MinHeight="5" MaxHeight="150"></RowDefinition>
+                        <RowDefinition Height="25*" MinHeight="5" MaxHeight="150"></RowDefinition>
+                        <RowDefinition Height="25*" MinHeight="5" MaxHeight="150"></RowDefinition>
+                        <RowDefinition Height="25*" MinHeight="5" MaxHeight="150"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50*" MaxWidth="250" MinWidth="10"></ColumnDefinition>
+                        <ColumnDefinition Width="50*" MaxWidth="250" MinWidth="10"></ColumnDefinition>
+                        <ColumnDefinition Width="50*" MaxWidth="250" MinWidth="10"></ColumnDefinition>
+                        <ColumnDefinition Width="50*" MaxWidth="250" MinWidth="10"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Rectangle Margin="5,5,5,5" 
+                               Grid.Row="1" 
+                               Grid.Column="1" 
+                               Grid.RowSpan="2" 
+                               Fill="Azure" 
+                               Stroke="Aquamarine" 
+                               StrokeThickness="2" 
+                               RadiusX="5" 
+                               RadiusY="5"></Rectangle>
+                    <Ellipse Grid.Column="2" Grid.Row="0" Grid.RowSpan="3" Fill="AntiqueWhite" Stroke="Black" StrokeThickness="3"></Ellipse>
+                </Grid>
+            </TabItem>
+            <TabItem Header="МШУ"></TabItem>
+            <TabItem Header="Фазовращатель" ></TabItem>
+            <TabItem Header="Аттенюатор"  ></TabItem>
+            <TabItem Header="Деембеддинг" ></TabItem>
+            <TabItem Header="Модель катушки"  ></TabItem>
+            <TabItem Header="Модель конденсатора"></TabItem>
+            <TabItem Header="Модель резистора" ></TabItem>
+            <TabItem Header="S-параметры" ></TabItem>
+        </TabControl>
+        
+    </DockPanel>
+</Window>
+
+
+
+<!--<TextBox Margin="50,50,50,50"
                  Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"
                  FontSize="25"
                  TextWrapping="Wrap"/>
-    </Grid>
-</Window>
+
+<Slider HorizontalAlignment="Center"  VerticalAlignment="Bottom" Value="{Binding Title}"/>-->
