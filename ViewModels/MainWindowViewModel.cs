@@ -7,14 +7,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
+using CV19.Models;
 
 namespace CV19.ViewModels
 {
     internal class MainWindowViewModel : ViewModel
     {
 
-
-
+        private IEnumerable<DataPoint> _TestDataPoints;
+        public IEnumerable<DataPoint> TestDataPoints { get => _TestDataPoints; set => Set(ref _TestDataPoints, value); }
 
 
         //private int _SelectedPageIndex;
@@ -73,17 +74,16 @@ namespace CV19.ViewModels
 
             //    #endregion
 
-            //    var data_points = new List<DataPoint>();
+            var data_points = new List<DataPoint>();
 
-            //    for (var x = 0d; x <= 360; x += 0.1)
-            //    {
-            //        const double to_rad = Math.PI / 180;
-            //        var y = Math.Sin(x * to_rad);
+            for (var x = 0d; x <= 360; x += 0.1)
+            {
+                const double to_rad = Math.PI / 180;
+                var y = Math.Sin(x * to_rad);
+                data_points.Add(new DataPoint { XValue = x, YValue = y });
+            }
 
-            //        data_points.Add(new DataPoint { XValue = x, YValue = y });
-            //    }
-
-            //    TestDataPoints = data_points;
+            TestDataPoints = data_points;
 
 
 
