@@ -12,6 +12,9 @@
     <Window.DataContext>
         <viewmodel:MainWindowViewModel/>
     </Window.DataContext>
+    <Window.InputBindings>
+        <KeyBinding Modifiers="Ctrl" Key="F4" Command="{Binding CloseApplicationCommand}"></KeyBinding>
+    </Window.InputBindings>
     <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Файл">
@@ -72,7 +75,14 @@
                     <Ellipse Grid.Column="2" 
                              Grid.Row="0" 
                              Grid.RowSpan="3" 
-                             Fill="AntiqueWhite" Stroke="Black" StrokeThickness="3"></Ellipse>
+                             Fill="AntiqueWhite" Stroke="Black" StrokeThickness="3">
+                        <Ellipse.InputBindings>
+                            <MouseBinding Command="{Binding CloseApplicationCommand}" MouseAction="RightDoubleClick"></MouseBinding>
+                        </Ellipse.InputBindings>
+                    </Ellipse>
+                    
+                    
+                    
                     <GridSplitter Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" HorizontalAlignment="Right" Width="5"></GridSplitter>
                 </Grid>
             </TabItem>
