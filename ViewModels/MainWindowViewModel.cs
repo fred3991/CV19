@@ -22,19 +22,34 @@ namespace CV19.ViewModels
         private IEnumerable<DataPoint> _TestDataPoints2;
         public IEnumerable<DataPoint> TestDataPoints2 { get => _TestDataPoints2; set => Set(ref _TestDataPoints2, value); }
 
-        //private int _SelectedPageIndex;
-        //public int SelectedPageIndex
-        //{
-        //    get => _SelectedPageIndex;
-        //    set => Set(ref _SelectedPageIndex, value);
-        //}
-        //public ICommand ChangeTabIndexCommand { get; }
-        //private void OnChangeTabIndexCommandExecuted(object p)
-        //{
-        //    if (p is null) return;
-        //    SelectedPageIndex += Convert.ToInt32(p);
-        //}
-        //private bool CanChangeTabIndexCommandExecute(object p) => _SelectedPageIndex >= 0;
+
+        private int PageCount = 9;
+
+        private int _SelectedPageIndex;
+        public int SelectedPageIndex
+        {
+            //get => _SelectedPageIndex;
+
+            get { if (_SelectedPageIndex > PageCount || _SelectedPageIndex <0) { return _SelectedPageIndex=0; } else { return _SelectedPageIndex; } } // нихуя я умный
+
+            set => Set(ref _SelectedPageIndex, value);
+        }
+
+
+    
+
+    public ICommand ChangeTabIndexCommand { get; }
+        private void OnChangeTabIndexCommandExecuted(object p)
+        {      
+            if (p is null) return;
+            SelectedPageIndex += Convert.ToInt32(p);
+
+         
+        }
+        private bool CanChangeTabIndexCommandExecute(object p) => _SelectedPageIndex >= 0;
+
+
+
         #region Заголовок окна
 
         private string _Title = "Анализ статистики COVID-19";
@@ -64,7 +79,7 @@ namespace CV19.ViewModels
         public MainWindowViewModel()
         {
             CloseApplicationCommand = new LambdaCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecute);
-            //ChangeTabIndexCommand = new LambdaCommand(OnChangeTabIndexCommandExecuted, CanChangeTabIndexCommandExecute);
+            ChangeTabIndexCommand = new LambdaCommand(OnChangeTabIndexCommandExecuted, CanChangeTabIndexCommandExecute);
 
             var data_points = new List<DataPoint>();
             var data_points2 = new List<DataPoint>();

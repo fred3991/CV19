@@ -59,6 +59,22 @@
                     </MenuItem.Header>
                 </MenuItem>
             </MenuItem>
+            
+            
+            
+            <MenuItem Command="{Binding ChangeTabIndexCommand}" CommandParameter="-1">
+                <MenuItem.Header>
+                    <fa5:ImageAwesome Height="15" Icon="Regular_ArrowAltCircleLeft"></fa5:ImageAwesome>
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem Command="{Binding ChangeTabIndexCommand}" CommandParameter="1">
+                <MenuItem.Header>
+                    <fa5:ImageAwesome Height="15" Icon="Regular_ArrowAltCircleRight"></fa5:ImageAwesome>
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem Header="{Binding SelectedPageIndex}"></MenuItem>
+            
+            
         </Menu>
         
         <StatusBar DockPanel.Dock="Bottom">
@@ -69,8 +85,8 @@
                 <ProgressBar Width="150" Height="16" Value="54"></ProgressBar>
             </StatusBarItem>
         </StatusBar>
-        
-        <TabControl>
+
+        <TabControl SelectedIndex="{Binding SelectedPageIndex}">
             <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
