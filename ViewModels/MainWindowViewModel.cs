@@ -18,6 +18,10 @@ namespace CV19.ViewModels
         public IEnumerable<DataPoint> TestDataPoints { get => _TestDataPoints; set => Set(ref _TestDataPoints, value); }
 
 
+
+        private IEnumerable<DataPoint> _TestDataPoints2;
+        public IEnumerable<DataPoint> TestDataPoints2 { get => _TestDataPoints2; set => Set(ref _TestDataPoints2, value); }
+
         //private int _SelectedPageIndex;
         //public int SelectedPageIndex
         //{
@@ -31,10 +35,6 @@ namespace CV19.ViewModels
         //    SelectedPageIndex += Convert.ToInt32(p);
         //}
         //private bool CanChangeTabIndexCommandExecute(object p) => _SelectedPageIndex >= 0;
-
-
-
-
         #region Заголовок окна
 
         private string _Title = "Анализ статистики COVID-19";
@@ -61,20 +61,13 @@ namespace CV19.ViewModels
         private bool CanCloseApplicationCommandExecute(object p) => true;
         #endregion
 
-
-
-
-
         public MainWindowViewModel()
         {
             CloseApplicationCommand = new LambdaCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecute);
-
-
             //ChangeTabIndexCommand = new LambdaCommand(OnChangeTabIndexCommandExecuted, CanChangeTabIndexCommandExecute);
 
-            //    #endregion
-
             var data_points = new List<DataPoint>();
+            var data_points2 = new List<DataPoint>();
 
             for (var x = 0d; x <= 360; x += 0.1)
             {
@@ -82,12 +75,17 @@ namespace CV19.ViewModels
                 var y = Math.Sin(x * to_rad);
                 data_points.Add(new DataPoint { XValue = x, YValue = y });
             }
-
             TestDataPoints = data_points;
 
 
 
-            //}
+            for (var x = 0d; x <= 360; x += 0.1)
+            {
+                const double to_rad = Math.PI / 180;
+                var y = Math.Cos(x * to_rad);
+                data_points2.Add(new DataPoint { XValue = x, YValue = y });
+            }
+            TestDataPoints2 = data_points2;
         }
     }
 }
