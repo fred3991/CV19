@@ -5,11 +5,21 @@ using System.Collections.Generic;
 using System.Windows.Input;
 using System.Windows;
 using CV19.Models;
+using CV19.Models.Decanat;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace CV19.ViewModels
 {
     internal class MainWindowViewModel : ViewModel
     {
+
+        public ObservableCollection<Group> Groups { get; }
+
+        #region SelectedGroup
+        private Group _SelectedGroup;
+        public Group SelectedGroup { get => _SelectedGroup; set => Set(ref _SelectedGroup, value); }
+        #endregion
 
         #region Перелистывание вкладок
         public ICommand ChangeTabIndexCommand { get; }
@@ -92,6 +102,31 @@ namespace CV19.ViewModels
                 data_points2.Add(new DataPoint { XValue = x, YValue = y });
             }
             TestDataPoints2 = data_points2;
+
+            ///Коллекция груп     
+
+            var student_index = 1;
+
+            var students = Enumerable.Range(1, 30).Select(i => new Student
+            {
+                Name = $"Name {student_index}",
+                Surname = $"Surname {student_index}",
+                Patronymic = $"Patronymic {student_index++}",
+                Birthday = DateTime.UtcNow,
+                Rating = 0
+            });
+            ///
+            
+            var groups = Enumerable.Range(1, 20).Select(i => new Group
+            {
+                GroupName = $"Группа {i}",
+                Students = new ObservableCollection<Student>(students)
+
+
+            });
+
+            Groups = new ObservableCollection<Group>(groups);
         }
+
     }
 }
