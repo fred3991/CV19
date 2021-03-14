@@ -16,11 +16,15 @@ namespace CV19.Models.Decanat
 
         public double Rating { get; set; }
 
+        public string Descripription { get; set; }
+
     }
 
     internal class Group
     {
         public string GroupName { get; set; }
         public ICollection<Student> Students { get; set; }
+
+        public string Descripription { get; set; }
     }
 }
