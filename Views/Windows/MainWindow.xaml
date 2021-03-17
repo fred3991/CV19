@@ -176,7 +176,7 @@
                                 <DataGridTemplateColumn Header="Дата рождения" >
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate DataType="decanat:Student">
-                                            <DatePicker SelectedDate="{Binding Birthday}"/>
+                                            <DatePicker SelectedDate="{Binding Birthday}"/>   
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
